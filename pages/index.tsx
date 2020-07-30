@@ -41,8 +41,8 @@ class Index extends React.Component<PageProps> {
     // console.log('5. Page.render');
     const { pageProp, appProp, app, page } = this.props;
     return (
-      <div className="index">
-        <p>
+      <div>
+        <p className="text-primary">
           Try to navigate to another page and return back here to see how{" "}
           <code>getInitialProps</code> will be used on client side.
         </p>
