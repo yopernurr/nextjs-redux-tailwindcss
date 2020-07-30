@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { NextPageContext } from "next";
 import { State } from "../redux/reducer";
+import DataSource from "../datasource";
+import Login from "../components/login";
 
 export interface PageProps extends State {
   pageProp: string;
   appProp: string;
+  serviceApi: any;
+  test: any;
 }
 
 class Index extends React.Component<PageProps> {
@@ -37,9 +41,17 @@ class Index extends React.Component<PageProps> {
     return { pageProp: "client" };
   }
 
+  handleLogin(body) {
+    console.log("PROPS", this.props)
+    this.props.serviceApi.login(body)
+    // const api = new DataSource(process.env.NEXT_PUBLIC_API, "TOKEN")
+    // api.login({"username" : 'username', "password" : 'password'})
+  }
+
   public render() {
     // console.log('5. Page.render');
-    const { pageProp, appProp, app, page } = this.props;
+    const { pageProp, appProp, app, page, serviceApi } = this.props;
+
     return (
       <div>
         <p className="text-primary">
@@ -60,6 +72,7 @@ class Index extends React.Component<PageProps> {
         <Link href="/error">
           <a>Navigate to error</a>
         </Link>
+        <Login login={(body) => this.handleLogin(body)}/>
       </div>
     );
   }
