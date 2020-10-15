@@ -32,6 +32,8 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   font-family: 'Gotham';
+  outline: none;
+  outline-width: 0px;
 }
 
 a {
@@ -41,4 +43,18 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.default-width {
+  width: 720px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.top-shadow {
+  box-shadow: 0 -5px 5px -5px #cbced1;
 }

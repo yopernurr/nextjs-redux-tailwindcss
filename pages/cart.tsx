@@ -5,7 +5,7 @@ import { NextPageContext } from "next";
 import { State } from "../redux/reducer";
 import DataSource from "../datasource";
 import Login from "../components/login";
-import NavBar from "../components/NavBar";
+import NavbarCart from "../components/NavbarCart";
 import CategoriesSection from "../components/Home/CategoriesSection";
 import PopularProductsSection from "../components/Home/PopularProductsSection";
 import SliderSection from "../components/Home/SliderSection";
@@ -26,21 +26,6 @@ class Index extends React.Component<PageProps> {
     query,
     req
   }: NextPageContext<State>) {
-    console.log("2. Page.getInitialProps uses the store to dispatch things", {
-      pathname,
-      query
-    });
-
-    if (req) {
-      // All async actions must be await'ed
-      await store.dispatch({ type: "PAGE", payload: "server" });
-
-      // Some custom thing for this particular page
-      return { pageProp: "server" };
-    }
-
-    // await is not needed if action is synchronous
-    store.dispatch({ type: "PAGE", payload: "client" });
 
     // Some custom thing for this particular page
     return { pageProp: "client" };
@@ -52,21 +37,29 @@ class Index extends React.Component<PageProps> {
     return (
       <div className="w-full h-screen bg-gray-400 flex justify-center pt-8">
         <div className="bg-white overflow-y-auto default-width h-full shadow-md">
-          <div style={{ height: '1400px' }}>
-            <NavBar />
-            <div className="w-full flex flex-wrap">
-              
-              <SliderSection api={serviceApi}/>
+          <div className="h-full">
+            <NavbarCart />
 
-              <CategoriesSection />
-              
-              <div className="w-full h-4 bg-gray-400"></div>
-
-              <PopularProductsSection />
-
-              <BottomNav />
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="w-full flex flex-wrap items-center justify-center">
+                <div className="w-20">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </div>
+                <div className="w-full text-center mt-4 text-2xl font-medium">
+                  EMPTY CART
+                </div>
+                <div className="w-full text-center mt-2">
+                  You have no items in your cart
+                </div>
+                <div className="w-full flex justify-center mt-8 text-white">
+                  <a href="/" className="rounded px-4 py-2 bg-gray-700 font-bold cursor-pointer">
+                    START SHOPPING
+                  </a>
+                </div>
+              </div>
             </div>
-            <div></div>
           </div>
         </div>
       </div>

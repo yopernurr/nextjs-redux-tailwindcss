@@ -24,6 +24,15 @@ class DataSource {
       body: JSON.stringify(body)
     })
   }
+
+  getBanners = async () => {
+    return fetch(`${this.url}banner?layout_type=list_layout&status=all`, {
+      method: 'GET',
+      headers: {
+        ...this.defaultHeaders
+      }
+    })
+  }
 }
 
 export default DataSource;

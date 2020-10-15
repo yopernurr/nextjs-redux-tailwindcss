@@ -2,6 +2,8 @@ import React from "react";
 import App, { AppInitialProps, AppContext } from "next/app";
 import { wrapper } from "../redux/store";
 import DataSource from '../datasource';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 
 import '../styles/globals.css';
 
@@ -25,10 +27,12 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
-    return <Component 
-      {...pageProps} 
-      serviceApi={new DataSource(process.env.NEXT_PUBLIC_API, pageProps.token)}
-    />;
+    return <SkeletonTheme color="#dadfe3" highlightColor="#e9eff5">
+      <Component 
+        {...pageProps} 
+        serviceApi={new DataSource(process.env.NEXT_PUBLIC_API, pageProps.token)}
+      />
+  </SkeletonTheme>;;
   }
 }
 
